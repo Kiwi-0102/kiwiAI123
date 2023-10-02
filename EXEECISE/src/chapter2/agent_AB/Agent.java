@@ -3,9 +3,6 @@ package chapter2.agent_AB;
 public class Agent {
 	private AgentProgram program;
 
-	public Agent() {
-	}
-
 	public Agent(AgentProgram aProgram) {
 		program = aProgram;
 	}
