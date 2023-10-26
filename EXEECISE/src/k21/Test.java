@@ -33,7 +33,12 @@ public class Test {
 		System.out.println("DFS:	" + NodeUtils.printPath(result2));
 		ISearchAlgo algo3 = new UniformCostSearchAlgo();
 		Node result3 = algo3.execute(nodeS, "G");
-		System.out.print("UCS:	  ");
+		System.out.println("UCS:	  "+ NodeUtils.printPath(result3));
 		
+		UniformCostSearchAlgo DLS = new UniformCostSearchAlgo();
+		Node nodeSG = DLS.execute(nodeS, "GOAL");
+		NodeUtils.print(nodeSG);
+		Node nodeEG = DLS.execute(nodeS, "e", "GOAL");
+		NodeUtils.print(nodeEG);
 	}
 }

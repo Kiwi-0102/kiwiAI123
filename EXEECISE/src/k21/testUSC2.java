@@ -1,6 +1,6 @@
 package k21;
 
-public class testDLS {
+public class testUSC2 {
 	public static void main(String[] args) {
 		Node nodeS = new Node("START");
 		Node nodeA = new Node("a");
