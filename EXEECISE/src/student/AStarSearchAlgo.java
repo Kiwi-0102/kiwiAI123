@@ -83,33 +83,4 @@ public class AStarSearchAlgo implements IInformedSearchAlgo{
 		return null;
 	}
 
-	private Queue<Node> frontier = new LinkedList<Node>();
-	private Set<Node> explored = new HashSet<Node>();
-	private boolean result = true;
-
-	public boolean isAdmissibleH(Node tree, String goal) {
-		frontier.offer(tree);
-
-		while (!frontier.isEmpty()) {
-			Node curr = frontier.poll();
-			explored.add(curr);
-			Node nodeRe = execute(curr, goal);
-			// if nodeRe == null => kh có đường đi => tự quy ước true => tiếp tục đệ quy
-			if (nodeRe != null) {
-				if (curr.getH() > nodeRe.getG())
-					return false;
-
-				for (Node child : curr.getChildrenNodes())
-					if (!explored.contains(child) && !frontier.contains(child)) {
-						child.setParent(null);
-						child.setG(0);
-						result = result && isAdmissibleH(child, goal);
-						if (!result)
-							return result;
-					}
-			}
-		}
-		return true;
-	}
-
 }
