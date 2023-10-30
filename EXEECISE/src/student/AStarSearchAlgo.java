@@ -7,6 +7,9 @@ import java.util.Set;
 import java.util.LinkedList;
 
 public class AStarSearchAlgo implements IInformedSearchAlgo{
+	private Queue<Node> frontier = new LinkedList<Node>();
+	private Set<Node> explored = new HashSet<Node>();
+	private boolean result = true;
 
 	@Override
 	public Node execute(Node tree, String goal) {
@@ -81,6 +84,28 @@ public class AStarSearchAlgo implements IInformedSearchAlgo{
 			}
 		}
 		return null;
+	}
+
+	public boolean isAdmissibleH(Node tree, String goal) {
+		frontier.offer(tree);
+		while (!frontier.isEmpty()) {
+			Node curr = frontier.poll();
+			explored.add(curr);
+			Node nodeRe = execute(curr, goal);
+			if (nodeRe != null) {
+				if (curr.getH() > nodeRe.getG())
+					return false;
+				for (Node child : curr.getChildrenNodes())
+					if (!explored.contains(child) && !frontier.contains(child)) {
+						child.setParent(null);
+						child.setG(0);
+						result = result && isAdmissibleH(child, goal);
+						if (!result)
+							return result;
+					}
+			}
+		}
+		return true;
 	}
 
 }

@@ -28,5 +28,9 @@ public class TestAStar {
 		
 		Node res1 = aStar.execute(s, c.getLabel(), g.getLabel());
 		System.out.println("A* from C to G:   "+NodeUtils.printPath(res1));
+		
+		AStarSearchAlgo aStarH = new AStarSearchAlgo();
+		System.out.println("Admissible H: " + aStarH.isAdmissibleH(s, g.getLabel()));
+	
 	}
 }
